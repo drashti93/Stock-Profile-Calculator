@@ -5,9 +5,6 @@ WTForms
 coverage
 Unicorn
 gunicorn
-forms
-logging
-Flask
 # ecdsa
 # paramiko
 # pycrypto

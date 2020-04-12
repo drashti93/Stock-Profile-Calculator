@@ -3,9 +3,9 @@
 #----------------------------------------------------------------------------#
 
 from flask import Flask, render_template, request
-import logging
-from logging import Formatter, FileHandler
-from forms import *
+#import logging
+#from logging import Formatter, FileHandler
+#from forms import *
 import os
 
 #----------------------------------------------------------------------------#
