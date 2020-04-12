@@ -1,0 +1,166 @@
+<!doctype html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Stocks</title>
+
+    <!-- styles -->
+    <link type="text/css" rel="stylesheet"
+        href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
+    <!-- /styles -->
+
+    <!-- favicons -->
+    <link rel="shortcut icon" href="/static/ico/favicon.png">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/static/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/static/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/static/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="/static/ico/apple-touch-icon-57-precomposed.png">
+    <link rel="shortcut icon" href="/static/ico/favicon.png">
+    <!-- /favicons -->
+
+</head>
+
+<body onload="toggleResults()">
+
+    <div class="container">
+
+        <form id="myForm" action="/" method="POST">
+            &nbsp;
+            <a href="/">
+                <h1 align="center">Stock Profit Calculator</h1>
+            </a>
+            &nbsp;
+            <div class="form-row">
+                <div class="col-md-4 mb-3">
+                    <label for="stockSymbol">Stock Symbol</label>
+                    <input type="text" class="form-control" name="stockSymbol" id="stockSymbol" placeholder="MSFT"
+                        required value={{symbol}}>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <label for="allotment">Allotment</label>
+                    <input type="number" class="form-control" name="allotment" id="allotment" placeholder="Number of Shares" value={{allotment}}
+                         required>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <label for="finalPrice">Final Share Price</label>
+                    <input type="number" class="form-control" name="finalPrice" placeholder="in dollars" value={{final_share_price}}
+                        id="finalPrice" required>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="col-md-4 mb-3">
+                    <label for="sellCommission">Sell Commission</label>
+                    <input type="number" class="form-control" name="sellCommission" id="sellCommission" placeholder="in dollars"
+                        value={{sell_comm}}  required>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <label for="initialPrice">Initial Share Price</label>
+                    <input type="number" class="form-control" name="initialPrice" placeholder="in dollars" id="initialPrice"
+                        value={{init_share_price}} required>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <label for="buyCommission">Buy Commission</label>
+                    <input type="number" class="form-control" name="buyCommission" id="buyCommission" placeholder="in dollars" value={{buy_comm}}
+                         required>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="col-md-4 mb-3">
+                    <label for="taxRate">Capital Gain Tax Rate</label>
+                    <input type="number" class="form-control" name="taxRate" placeholder="in %" id="taxRate" value={{cap_gain_tax}}
+                        required>
+                </div>
+                <div class="col-md-4 mb-3">
+
+                </div>
+
+            </div>
+
+            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="reset" id="reset" onClick="reset()" class="btn btn-danger">Reset</button>
+
+        </form>
+
+    </div>
+    <div class="container" style="display: none" id="results">
+        <h3 align="center">Results</h3>
+        <table align="center" class="table table-striped table-dark col-md-6">
+            <tbody>
+                <tr>
+                    <td>Proceeds</td>
+                    <td>{{proceeds}}</td>
+
+                </tr>
+                <tr>
+                    <td>Cost</td>
+                    <td>{{cost}}</td>
+                </tr>
+                <tr>
+                    <td>Total Purchase Price</td>
+                    <td>{{init_total}}</td>
+                </tr>
+                <tr>
+                    <td>Buy Commission</td>
+                    <td>{{buy_comm}}</td>
+                </tr>
+                <tr>
+                    <td>Sell Commission</td>
+                    <td>{{sell_comm}}</td>
+                </tr>
+
+                <tr>
+                    <td>Tax on Capital Gain</td>
+                    <td>{{gain}}</td>
+                </tr>
+                <tr>
+                    <td>Net Profit</td>
+                    <td>{{net_profit}}</td>
+                </tr>
+                <tr>
+                    <td>Return on Investment</td>
+                    <td>{{ret_on_inv}}</td>
+                </tr>
+                <tr>
+                    <td>To breakeven you need</td>
+                    <td>{{breakeven}}</td>
+                </tr>
+
+
+            </tbody>
+        </table>
+    </div>
+
+
+    <script>
+        function toggleResults() {
+
+            console.log(`{{breakeven}}`)
+            var x = document.getElementById("results");
+            if (`{{breakeven}}`) {
+                x.style.display = "block";
+            }
+
+        }
+
+        document.getElementById("reset").addEventListener('click', function () {
+            document.getElementById("stockSymbol").setAttribute("value", "")
+            document.getElementById("allotment").setAttribute("value", "")
+            document.getElementById("finalPrice").setAttribute("value", "")
+            document.getElementById("sellCommission").setAttribute("value", "")
+            document.getElementById("initialPrice").setAttribute("value", "")
+            document.getElementById("buyCommission").setAttribute("value", "")
+            document.getElementById("taxRate").setAttribute("value", "")
+            document.getElementById("results").style.display = "none";
+        })
+
+    </script>
+    <script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        defer></script>
+    <script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"
+        defer></script>
+
+</body>
+
+</html>
