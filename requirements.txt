@@ -4,6 +4,7 @@ Flask-WTF
 WTForms
 coverage
 Unicorn
+gunicorn
 # ecdsa
 # paramiko
 # pycrypto
